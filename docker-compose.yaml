@@ -1,0 +1,25 @@
+version: '3'
+services: 
+  web:
+    build: 
+      context: . #In Which directory to see
+      dockerfile: Dockerfile.dev
+
+    ports: 
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - /home/gauty/4.frontend:/home/node/app
+  tests:
+    build: 
+      context: . #In Which directory to see
+      dockerfile: Dockerfile.dev
+    # As Test doesn't use any port
+    # ports: 
+    #   - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - /home/gauty/4.frontend:/home/node/app
+    # override the default for running test
+    command: ["npm","run","test"]
+  
